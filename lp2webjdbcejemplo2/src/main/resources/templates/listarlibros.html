@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de Libros</title>
+
+	<!-- Agrega la referencia al CSS de Bootstrap -->
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container mt-4">
+		<h1>LIistado de Libros</h1>
+
+		<!-- Agrega una tabla con estilos de Bootstrap -->
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Título</th>
+					<th>Autor</th>
+					<th>Editorial</th>
+					<th>Fecha de Registro</th>
+					<th>Costo</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Itera sobre la lista de libros y muestra cada libro -->
+				<tr th:each="libro : ${libros}">
+					<td th:text="${libro.titulo}"></td>
+					<td th:text="${libro.autor}"></td>
+					<td th:text="${libro.editorial}"></td>
+					<td th:text="${#dates.format(libro.fecharegistro, 'dd-MM-yyyy')}"></td>
+					<td th:text="${libro.costo}"></td>
+					<td>
+						<!-- Agrega botones de edición y eliminación con estilos de Bootstrap -->
+						<a th:href="@{/libros/editar/{id}(id=${libro.id_libro})}"
+							class="btn btn-primary btn-sm">Editar</a>
+						<a th:href="@{/libros/eliminar/{id}(id=${libro.id_libro})}"
+							class="btn btn-danger btn-sm">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/libros/nuevo}" class="btn btn-success">Nuevo Libro</a>
+	</div>
+</body>
+</html>
