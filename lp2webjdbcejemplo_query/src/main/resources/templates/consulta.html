@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Consulta de Productos</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Consulta de Productos</h1>
+
+		
+		<form action="/consultar" method="post" class="text-center mt-4">
+			<div class="form-group">
+				<input type="text" class="form-control" name="descripcion"
+					placeholder="Ingrese la descripción del producto">
+			</div>
+			<button type="submit" class="btn btn-primary">Consultar</button>
+		</form>
+
+		
+		<div class="mt-4">
+			
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>ID Producto</th>
+						<th>Descripción</th>
+						<th>Precio</th>
+						<th>Cantidad</th>
+						<th>Fecha de Vencimiento</th>
+						<th>Categoría</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producto : ${productos}">
+						<td th:text="${producto.idProducto}"></td>
+						<td th:text="${producto.descripcion}"></td>
+						<td th:text="${producto.precio}"></td>
+						<td th:text="${producto.cantidad}"></td>
+						<td th:text="${#dates.format(producto.fechaVencimiento, 'dd-MM-yyyy')}"></td>
+						<td th:text="${producto.descripcionCategoria}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	
+</body>
+
+</html>
