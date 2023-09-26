@@ -1,0 +1,1 @@
+En su servidor MySQL sólo crear la BD con la instruccion: CREATE DATABASE jpadb;
