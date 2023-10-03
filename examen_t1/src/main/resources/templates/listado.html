@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de Medicamentos</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<br>
+	<br>
+	<div class="container">
+		<a th:href="@{/nuevo}" class="btn btn-success">Nuevo Registro de Medicamento</a>
+	</div>
+	<div class="container">
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Medicamento</th>
+					<th>Descripcion</th>
+					<th>Categoria</th>
+					<th>Precio</th>
+					<th>Fecha de Vencimiento</th>
+					<th>Stock</th>					
+					<th>Proveedor</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="med : ${medicamentos}">
+					<td th:text="${med.nombre}"></td>
+					<td th:text="${med.descripcion}"></td>
+					<td th:text="${med.categoria}"></td>
+					<td th:text="${med.precio}"></td>
+					<td th:text="${#dates.format(med.fechavencimiento, 'dd-MM-yyyy')}"></td>
+					<td th:text="${med.stock}"></td>										
+					<td th:text="${med.proveedor}"></td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
