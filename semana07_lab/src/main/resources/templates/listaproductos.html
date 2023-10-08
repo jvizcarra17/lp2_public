@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Lista de Productos</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="container mt-5">
+	<h1 class="mb-4">Consulta de Productos</h1>
+	<form method="post" action="/consultar">
+		<div class="form-group">
+			<label for="descripcion">Descripción:</label>
+			<input type="text" class="form-control" id="descripcion" name="descripcion" required>
+			</br>
+			<button type="submit" class="btn btn-primary">Consultar</button>
+		</div>
+	</form>
+	<div th:if="${not #lists.isEmpty(productos)}" class="mt-4">
+		<h2>Resultados de la búsqueda:</h2>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="producto : ${productos}">
+					<td th:text="${producto.nombre}"></td>
+					<td th:text="${producto.descripcion}"></td>
+					<td th:text="${producto.precio}"></td>
+					<td th:text="${producto.cantidad}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:if="${#lists.isEmpty(productos)}">
+		<p>No se encontraron productos para la descripción proporcionada.</p>
+	</div>
+</body>
+</html>
